@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/assets/favicon.png" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Demiri Builder Ltd | New Builds, Extensions, Refurbs</title>
+  <meta name="description" content="Demiri Builder Ltd — London & Kent builders for new builds, extensions, loft conversions, kitchens, bathrooms, roofing, electrics, plumbing, rendering, plastering, and decorating." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&display=swap" rel="stylesheet">
+  <meta property="og:title" content="Demiri Builder Ltd" />
+  <meta property="og:description" content="Design, build, and refurbishment across London & Kent." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/assets/demiri-og.jpg" />
+  <meta name="theme-color" content="#111111" />
+  <style>
+    :root{
+      --bg:#0c0c0c; --panel:#121212; --ink:#f4f4f4; --muted:#bdbdbd; --accent:#ffd026; --line:#232323;
+      --max:1200px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0; padding:0; background:var(--bg); color:var(--ink); font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;}
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; height:auto; display:block}
+    .container{max-width:var(--max); margin:0 auto; padding:0 20px}
+    .btn{display:inline-flex; align-items:center; gap:.6rem; padding:.9rem 1.15rem; border-radius:14px; font-weight:700; border:1px solid var(--line); background:linear-gradient(180deg,#1b1b1b,#0f0f0f); box-shadow:0 1px 0 #fff1 inset, 0 8px 24px rgba(0,0,0,.35)}
+    .btn:is(:hover,:focus-visible){transform:translateY(-1px)}
+    .btn-accent{background:linear-gradient(180deg,#ffe45e,#ffd026); color:#111; border-color:#000; box-shadow:0 1px 0 rgba(255,255,255,.6) inset, 0 8px 24px rgba(255,208,38,.25)}
+    .btn-ghost{background:transparent; border-color:var(--line)}
+    .badge{display:inline-flex; align-items:center; gap:.5rem; padding:.4rem .8rem; border:1px solid var(--line); border-radius:999px; color:var(--muted); font-size:.9rem}
+    header{position:sticky; top:0; z-index:50; backdrop-filter:saturate(120%) blur(10px); background:rgba(12,12,12,.8); border-bottom:1px solid var(--line)}
+    .nav{display:flex; align-items:center; justify-content:space-between; gap:1rem; height:64px}
+    .logo{display:flex; align-items:center; gap:.7rem; font-weight:800; letter-spacing:.3px}
+    .logo svg{width:30px; height:30px}
+    nav ul{list-style:none; display:flex; gap:1.1rem; align-items:center; margin:0; padding:0}
+    nav a{color:var(--muted)}
+    nav a:hover{color:var(--ink)}
+    .nav-actions{display:flex; gap:.6rem; align-items:center}
+    .hamburger{display:none; background:transparent; border:1px solid var(--line); width:40px; height:40px; border-radius:10px}
+
+    .hero{position:relative; isolation:isolate;}
+    .hero .wrap{display:grid; grid-template-columns:1.15fr .85fr; gap:40px; padding:64px 0}
+    .hero h1{font-size:clamp(36px,5vw,56px); line-height:1.05; margin:10px 0 16px; font-weight:800}
+    .hero p.lede{font-size:clamp(16px,2.5vw,20px); color:#d8d8d8; margin:0 0 22px; max-width:60ch}
+    .hero .quick{display:flex; gap:10px; flex-wrap:wrap}
+    .hero .panel{background:radial-gradient(1200px 300px at 0% 0%, rgba(255,208,38,.12), transparent 60%), #0d0d0d; border:1px solid var(--line); border-radius:20px; padding:24px}
+
+    .hero-illus{align-self:stretch; border:1px solid var(--line); border-radius:20px; background:linear-gradient(140deg,#141414, #0a0a0a); display:grid; place-items:center; position:relative; overflow:hidden}
+    .hero-illus .shape{position:absolute; inset:auto -10% -20% -10%; height:220px; background:conic-gradient(from 10deg at 40% 50%, rgba(255,208,38,.25), transparent 30%); filter:blur(30px)}
+    .hero-illus .grid{--s:28px; position:absolute; inset:0; background:
+      linear-gradient(var(--line) 1px, transparent 1px) 0 0/100% var(--s),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0/var(--s) 100%}
+    .hero-illus .card{position:relative; z-index:1; border:1px solid var(--line); border-radius:16px; padding:18px; width:min(420px, 90%); background:rgba(20,20,20,.7); box-shadow:0 12px 40px rgba(0,0,0,.4)}
+
+    .section{padding:56px 0; border-top:1px solid var(--line)}
+    .section h2{font-size:clamp(24px,3.6vw,36px); margin:0 0 10px; font-weight:800}
+    .section .sub{color:var(--muted); margin:0 0 24px}
+
+    .services{display:grid; grid-template-columns:repeat(12, 1fr); gap:14px}
+    .service{grid-column:span 6; border:1px solid var(--line); border-radius:16px; padding:18px; background:linear-gradient(180deg,#151515,#0e0e0e)}
+    .service h3{margin:6px 0 6px; font-size:1.05rem}
+    .service p{margin:0; color:#c9c9c9; font-size:.95rem}
+
+    .process{display:grid; grid-template-columns:repeat(4,1fr); gap:14px}
+    .step{border:1px solid var(--line); border-radius:16px; padding:18px; background:linear-gradient(180deg,#151515,#0e0e0e)}
+    .step b{display:inline-block; font-size:1.1rem; margin-bottom:6px}
+
+    .projects{display:grid; grid-template-columns:repeat(12,1fr); gap:14px}
+    .project{grid-column:span 4; border:1px solid var(--line); border-radius:16px; overflow:hidden; background:#101010}
+    .thumb{height:170px; background:linear-gradient(120deg,#1c1c1c,#0e0e0e); position:relative}
+    .thumb::after{content:""; position:absolute; inset:0; background:repeating-linear-gradient(45deg, rgba(255,208,38,.1) 0 8px, transparent 8px 16px)}
+    .project .copy{padding:14px}
+
+    .testimonials{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+    blockquote{margin:0; border:1px solid var(--line); border-radius:16px; padding:18px; font-size:1rem; color:#ddd; background:linear-gradient(180deg,#151515,#0e0e0e)}
+    blockquote footer{margin-top:10px; color:var(--muted)}
+
+    .faq{display:grid; grid-template-columns:repeat(2,1fr); gap:14px}
+    details{border:1px solid var(--line); border-radius:16px; padding:18px; background:linear-gradient(180deg,#151515,#0e0e0e)}
+    summary{cursor:pointer; font-weight:700}
+
+    .contact{display:grid; grid-template-columns:1fr 1fr; gap:20px}
+    form{border:1px solid var(--line); border-radius:16px; padding:18px; background:linear-gradient(180deg,#151515,#0e0e0e)}
+    label{display:block; font-size:.95rem; color:#cfcfcf; margin:10px 0 6px}
+    input, select, textarea{width:100%; padding:.85rem 1rem; border-radius:12px; border:1px solid #2a2a2a; background:#0b0b0b; color:#fff}
+    textarea{min-height:140px}
+    .info{border:1px solid var(--line); border-radius:16px; padding:18px; background:linear-gradient(180deg,#151515,#0e0e0e)}
+
+    .cta{margin-top:30px; border:1px dashed #3a3a3a; border-radius:16px; padding:16px; display:flex; align-items:center; justify-content:space-between; gap:10px}
+
+    footer{padding:32px 0; border-top:1px solid var(--line); color:#b9b9b9}
+    .foot{display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:20px}
+    .small{font-size:.9rem; color:var(--muted)}
+
+    @media (max-width: 980px){
+      .hero .wrap{grid-template-columns:1fr; gap:20px}
+      .services .service, .projects .project{grid-column:span 12}
+      .process{grid-template-columns:1fr 1fr}
+      .testimonials{grid-template-columns:1fr}
+      .faq{grid-template-columns:1fr}
+      .contact{grid-template-columns:1fr}
+      nav ul{display:none}
+      .hamburger{display:inline-grid; place-items:center}
+      .mobile-open nav ul{display:flex; position:absolute; top:64px; left:0; right:0; background:#0d0d0d; border-bottom:1px solid var(--line); padding:12px 20px; flex-direction:column}
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Demiri Builder Ltd",
+    "image": "/assets/logo.png",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "85-89 Elmers End Road", 
+      "addressLocality": "Beckenham",
+      "postalCode": "BR3 4SY",
+      "addressCountry": "UK"
+    },
+    "areaServed": ["Greater London", "Kent"],
+    "telephone": "+44 7722 999928",
+    "url": "https://www.demiribuilder.co.uk",
+    "sameAs": ["https://www.instagram.com/demiribuilderltd"]
+  }
+  </script>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="logo" href="#home" aria-label="Demiri Builder Ltd home">
+        <!-- Simple inline SVG logo: house + tower -->
+        <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+          <path d="M6 30 L32 10 L58 30" fill="none" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/>
+          <path d="M16 28 h16 v24 h-16 z" fill="#1a1a1a" stroke="#333"/>
+          <path d="M38 20 h10 v32 h-10 z" fill="#1a1a1a" stroke="#333"/>
+          <circle cx="24" cy="40" r="3" fill="#2c2c2c" />
+        </svg>
+        <span>Demiri Builder Ltd</span>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <a class="btn btn-ghost" href="tel:+447722999928">Call</a>
+        <a class="btn btn-accent" href="#contact">Get a Quote</a>
+        <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="container wrap">
+        <div>
+          <span class="badge">London & Kent • Domestic & Commercial • Free Site Visits</span>
+          <h1>Build it once. Build it right.</h1>
+          <p class="lede">New builds, extensions, loft conversions and full refurbishments — plus kitchens, bathrooms, roofing, electrics, plumbing, rendering, plastering, and decorating. Start‑to‑finish project management with straight talk and tidy sites.</p>
+          <div class="quick">
+            <a class="btn btn-accent" href="#contact">Get a fast quote</a>
+            <a class="btn" href="https://wa.me/447722999928" target="_blank" rel="noopener">WhatsApp</a>
+            <a class="btn btn-ghost" href="#projects">See recent work</a>
+          </div>
+          <div class="panel" style="margin-top:16px">
+            <ul style="display:grid; grid-template-columns:repeat(3,1fr); gap:6px; padding:0; margin:0; list-style:none; font-size:.95rem; color:#d6d6d6">
+              <li>⏱️ Rapid site visits</li>
+              <li>🧰 Tried‑and‑tested trades</li>
+              <li>📋 Transparent pricing</li>
+            </ul>
+          </div>
+        </div>
+        <div class="hero-illus">
+          <div class="grid"></div>
+          <div class="shape"></div>
+          <div class="card">
+            <b>Typical projects</b>
+            <ul style="margin:8px 0 0; padding-left:18px; color:#cfcfcf">
+              <li>Rear/side extension with kitchen fit‑out</li>
+              <li>Loft conversion (dormer + ensuite)</li>
+              <li>Full refurb: rewire, re‑plumb, skim, decorate</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="section">
+      <div class="container">
+        <h2>Services</h2>
+        <p class="sub">From foundations to finish. Pick the scope — we handle the rest.</p>
+        <div class="services">
+          <!-- 12 service cards -->
+          <div class="service"><h3>New Builds</h3><p>Groundworks, shell, M&amp;E, finishing — delivered end‑to‑end.</p></div>
+          <div class="service"><h3>Extensions</h3><p>Rear, side, wrap‑around, structural steel, kitchens, glazing.</p></div>
+          <div class="service"><h3>Loft Conversions</h3><p>Dormers, skylights, stairs, insulation, ensuite install.</p></div>
+          <div class="service"><h3>Refurbishments</h3><p>Full strip‑out, rewire, re‑plumb, plaster, decorate.</p></div>
+          <div class="service"><h3>Kitchens</h3><p>Rip‑out, first/second fix, units, worktops, appliances.</p></div>
+          <div class="service"><h3>Bathrooms</h3><p>Tiling, waterproofing, suites, underfloor heating.</p></div>
+          <div class="service"><h3>Roofing</h3><p>Flat roofs (OSB + GRP), pitched, insulation, skylights.</p></div>
+          <div class="service"><h3>Plumbing &amp; Heating</h3><p>First fix/second fix, boilers, radiators, bathrooms.</p></div>
+          <div class="service"><h3>Electrical</h3><p>Consumer units, rewires, certification, smart lighting.</p></div>
+          <div class="service"><h3>Rendering &amp; Plaster</h3><p>Monocouche, sand &amp; cement, skim, external insulation.</p></div>
+          <div class="service"><h3>Painting &amp; Decorating</h3><p>Prep, mist/sheen coats, feature walls, woodwork.</p></div>
+          <div class="service"><h3>Gardens &amp; Patios</h3><p>Landscaping, porcelain slabs, drainage, fencing.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="process" class="section">
+      <div class="container">
+        <h2>How we work</h2>
+        <p class="sub">Simple steps. Zero faff.</p>
+        <div class="process">
+          <div class="step"><b>1) Call &amp; consult</b><div>Tell us the brief, budget, and timing.</div></div>
+          <div class="step"><b>2) Site visit &amp; quote</b><div>We measure, scope, and give a clear price.</div></div>
+          <div class="step"><b>3) Build &amp; manage</b><div>We run the trades, schedule, and materials.</div></div>
+          <div class="step"><b>4) Snag &amp; handover</b><div>Finish clean, test, and hand you the keys.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="container">
+        <h2>Recent Projects</h2>
+        <p class="sub">A few snapshots. More on request.</p>
+        <div class="projects">
+          <article class="project">
+            <div class="thumb" role="img" aria-label="Rear extension with kitchen" ></div>
+            <div class="copy"><b>SE1 — Rear Extension + Kitchen</b><div class="small">Steel, bifolds, bespoke joinery, microcement floor.</div></div>
+          </article>
+          <article class="project">
+            <div class="thumb" role="img" aria-label="Dormer loft conversion"></div>
+            <div class="copy"><b>BR3 — Dormer Loft + Ensuite</b><div class="small">New staircase, Velux, ensuite, full rewire.</div></div>
+          </article>
+          <article class="project">
+            <div class="thumb" role="img" aria-label="Full refurbishment"></div>
+            <div class="copy"><b>SW9 — Full Refurb</b><div class="small">Strip‑out, replumb, rewire, skim, decorate.</div></div>
+          </article>
+          <article class="project">
+            <div class="thumb" role="img" aria-label="Kitchen fit"></div>
+            <div class="copy"><b>SE19 — Kitchen Fit</b><div class="small">Quartz worktops, LED, herringbone floor.</div></div>
+          </article>
+          <article class="project">
+            <div class="thumb" role="img" aria-label="Bathroom remodel"></div>
+            <div class="copy"><b>CR0 — Bathroom Remodel</b><div class="small">Tank, tile, underfloor heating, rainfall shower.</div></div>
+          </article>
+          <article class="project">
+            <div class="thumb" role="img" aria-label="Landscaping and patio"></div>
+            <div class="copy"><b>BR4 — Garden &amp; Patio</b><div class="small">Porcelain slabs, drainage, lighting, planters.</div></div>
+          </article>
+        </div>
+        <div class="cta">
+          <div><b>Want a clean, itemised quote?</b> Send drawings or a simple brief — we’ll price it properly.</div>
+          <a class="btn btn-accent" href="#contact">Start my quote</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section">
+      <div class="container">
+        <h2>FAQ</h2>
+        <p class="sub">If you’re thinking it, someone asked it last week.</p>
+        <div class="faq">
+          <details>
+            <summary>How fast can you start?</summary>
+            <div class="small">Depends on scope and lead times. Small jobs can be scheduled quickly; larger builds need proper planning. Tell us your dates — we’ll be realistic.</div>
+          </details>
+          <details>
+            <summary>Do you supply materials?</summary>
+            <div class="small">Yes. We can run supply &amp; fit, or labour‑only if you’re providing finishes via your designer. Your call.</div>
+          </details>
+          <details>
+            <summary>What areas do you cover?</summary>
+            <div class="small">Greater London and Kent. If you’re further, ask anyway.</div>
+          </details>
+          <details>
+            <summary>Can you help with drawings &amp; regs?</summary>
+            <div class="small">We can recommend architects/structural and coordinate with building control.</div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <h2>Get a Quote</h2>
+        <p class="sub">Give us the basics. We’ll come back with a plan and a number.</p>
+        <div class="contact">
+          <form id="quoteForm">
+            <!-- TODO: replace email below in JS with your real inbox (e.g., info@demiribuilder.co.uk) -->
+            <div class="grid" style="display:grid; grid-template-columns:1fr 1fr; gap:12px">
+              <div>
+                <label for="name">Name</label>
+                <input id="name" name="name" autocomplete="name" required />
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" required />
+              </div>
+              <div>
+                <label for="phone">Phone</label>
+                <input id="phone" name="phone" type="tel" autocomplete="tel" />
+              </div>
+              <div>
+                <label for="postcode">Postcode</label>
+                <input id="postcode" name="postcode" autocomplete="postal-code" />
+              </div>
+              <div>
+                <label for="type">Project Type</label>
+                <select id="type" name="type">
+                  <option>Extension</option>
+                  <option>Loft Conversion</option>
+                  <option>Refurbishment</option>
+                  <option>Kitchen</option>
+                  <option>Bathroom</option>
+                  <option>Roofing</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div>
+                <label for="budget">Rough Budget</label>
+                <select id="budget" name="budget">
+                  <option>Undecided</option>
+                  <option>£5k–£15k</option>
+                  <option>£15k–£40k</option>
+                  <option>£40k–£80k</option>
+                  <option>£80k+</option>
+                </select>
+              </div>
+            </div>
+            <label for="message" style="margin-top:10px">Project Details</label>
+            <textarea id="message" name="message" placeholder="Tell us what you want done, timing, and if you have drawings."></textarea>
+            <div style="display:flex; gap:10px; margin-top:12px; align-items:center">
+              <button class="btn btn-accent" type="submit">Send</button>
+              <a class="btn btn-ghost" href="mailto:info@demiribuilder.co.uk?subject=Quote%20Request%20-%20Demiri%20Builder%20Ltd" id="fallbackMail">Open Email</a>
+              <span class="small">or WhatsApp <a href="https://wa.me/447722999928" target="_blank" rel="noopener">+44 7722 999928</a></span>
+            </div>
+          </form>
+          <div class="info">
+            <b>Contact</b>
+            <div class="small" style="margin-top:8px">Phone: <a href="tel:+447722999928">+44 7722 999928</a></div>
+            <div class="small">Email: <a href="mailto:info@demiribuilder.co.uk">info@demiribuilder.co.uk</a></div>
+            <div class="small">Address: 85–89 Elmers End Road, Beckenham, BR3 4SY</div>
+            <div class="small" style="margin-top:10px">Hours: Mon–Sat 8:00–18:00 (by appointment)</div>
+            <hr style="border:none; border-top:1px solid var(--line); margin:14px 0">
+            <b>Areas we cover</b>
+            <div class="small">Beckenham • Bromley • Croydon • Lewisham • Greenwich • Southwark • Lambeth • Westminster • City • Kent</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container foot">
+      <div>
+        <div class="logo" style="margin-bottom:8px">
+          <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false" width="24" height="24">
+            <path d="M6 30 L32 10 L58 30" fill="none" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/>
+            <path d="M16 28 h16 v24 h-16 z" fill="#1a1a1a" stroke="#333"/>
+            <path d="M38 20 h10 v32 h-10 z" fill="#1a1a1a" stroke="#333"/>
+          </svg>
+          <span>Demiri Builder Ltd</span>
+        </div>
+        <div class="small">Design • Build • Refurbishment across London &amp; Kent.</div>
+      </div>
+      <div>
+        <b>Company</b>
+        <div class="small"><a href="#services">Services</a></div>
+        <div class="small"><a href="#projects">Projects</a></div>
+        <div class="small"><a href="#process">Process</a></div>
+      </div>
+      <div>
+        <b>Legal</b>
+        <div class="small">© <span id="year"></span> Demiri Builder Ltd</div>
+        <div class="small">All rights reserved</div>
+        <div class="small">Company No: 00000000 <!-- TODO replace --></div>
+      </div>
+      <div>
+        <b>Contact</b>
+        <div class="small"><a href="mailto:info@demiribuilder.co.uk">info@demiribuilder.co.uk</a></div>
+        <div class="small"><a href="tel:+447722999928">+44 7722 999928</a></div>
+        <div class="small"><a href="https://www.instagram.com/demiribuilderltd" target="_blank" rel="noopener">Instagram</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const hamburger = document.getElementById('hamburger');
+    hamburger?.addEventListener('click', () => document.body.classList.toggle('mobile-open'));
+
+    // Dynamic year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mailto form handler – builds an email from the form without external plugins.
+    const form = document.getElementById('quoteForm');
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      const to = 'info@demiribuilder.co.uk'; // TODO: change to your inbox
+      const subject = encodeURIComponent(`Quote Request - ${data.name || 'Website'}`);
+      const body = encodeURIComponent(
+        `Name: ${data.name || ''}\nEmail: ${data.email || ''}\nPhone: ${data.phone || ''}\nPostcode: ${data.postcode || ''}\nProject Type: ${data.type || ''}\nBudget: ${data.budget || ''}\n\nDetails:\n${data.message || ''}`
+      );
+      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+    });
+  </script>
+</body>
+</html>
